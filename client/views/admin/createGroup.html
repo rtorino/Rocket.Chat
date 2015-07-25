@@ -1,0 +1,30 @@
+<template name="admin">
+	<form id="create-group">
+		<header>
+			<h2>Create Groups</h2>
+		</header>
+		<div class="fields">
+			<div class="input-text active">
+				<input type="text" name="groupName" placeholder="group name">
+			</div>
+		</div>
+		<div class="submit">
+			<button data-loading-text="{{_ "Please_wait"}}..." class='button primary login'>
+				<span>Create</span>
+			</button>
+		</div>
+		<hr>
+		<h2>Groups:</h2>
+		<ul>
+			{{#unless groups}}
+				<li>
+					<span>None</span>
+				</li>
+			{{else}}
+				{{#each groups}}
+					<li>{{name}}</li>
+				{{/each}}
+			{{/unless}}
+		</ul>
+	</form>
+</template>

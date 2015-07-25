@@ -24,6 +24,14 @@
 			<div class='input-text active {{showConfirmPassword}}'>
 				<input type="password" name='confirm-pass' placeholder='{{_ "Confirm_password"}}' />
 			</div>
+			<div class="input-text active {{showName}}">
+				<label for="selectGroup">Select Group:</label>
+				<select name="group" id="group">
+					{{#each groups}}
+						<option value="{{_id}}">{{name}}</option>
+					{{/each}}
+				</select>
+			</div>
 		</div>
 		<div class="submit">
 			<button data-loading-text="{{_ "Please_wait"}}..." class='button primary login'><span>{{btnLoginSave}}</span></button>

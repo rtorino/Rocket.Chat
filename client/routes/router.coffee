@@ -19,7 +19,10 @@ Router.configure
 Router.onBeforeAction ->
 	if not Meteor.userId()
 		this.layout('loginLayout')
-		this.render('loginForm')
+		if Router.current().route.getName() == 'admin'
+			this.next();
+		else
+			this.render('loginForm')
 	else
 		Session.set 'openedRoom', null
 		this.next()
@@ -118,3 +121,12 @@ Router.route '/history/private',
 
 	waitOn: ->
 		return [ Meteor.subscribe('privateHistory') ]
+
+Router.route '/admin',
+	name: 'admin'
+
+	action: ->
+		if Meteor.userId()
+			Router.go 'home'
+
+		this.render 'admin'

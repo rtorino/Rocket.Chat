@@ -1,8 +1,7 @@
 Meteor.startup ->
 	Meteor.defer ->
 
-
-		if not ChatRoom.findOne('name': 'general')?
+		if this.userId and not ChatRoom.findOne('name': 'general')?
 			ChatRoom.insert
 				_id: 'GENERAL'
 				usernames: []

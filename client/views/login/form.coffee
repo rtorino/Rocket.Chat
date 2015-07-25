@@ -37,6 +37,9 @@ Template.loginForm.helpers
 			when 'forgot-password'
 				return t('Reset_password')
 
+	groups: ->
+		return Groups.find()
+
 Template.loginForm.events
 	'submit #login-card': (event, instance) ->
 		event.preventDefault()

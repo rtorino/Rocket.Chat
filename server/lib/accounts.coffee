@@ -58,6 +58,9 @@ Accounts.validateLoginAttempt (login) ->
 			throw new Meteor.Error 'no-valid-email'
 			return false
 
+	if not Partitioner.getUserGroup login.user._id
+		Partitioner.setUserGroup login.user._id, login.user._groupId
+
 	Meteor.users.update {_id: login.user._id}, {$set: {lastLogin: new Date}}
 	Meteor.defer ->
 		RocketChat.callbacks.run 'afterValidateLogin', login
